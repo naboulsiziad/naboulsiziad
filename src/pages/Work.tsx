@@ -1,10 +1,17 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, X } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import VideoCard from "@/components/VideoCard";
-import { projects, clients, getProjectsByCategory } from "@/data/projects";
+import { projects, getProjectsByCategory } from "@/data/projects";
+
+// Import client thumbnails
+import thumbWingsForHope from "@/assets/thumb-wings-for-hope.jpg";
+import thumbMerehbi from "@/assets/thumb-merehbi.jpg";
+import thumbCrowOutlet from "@/assets/thumb-crow-outlet.jpg";
+import thumbTradingRoad from "@/assets/thumb-trading-road.jpg";
+import thumbSakrFurniture from "@/assets/thumb-sakr-furniture.jpg";
 
 const categories = [
   { id: "all", label: "All" },
@@ -14,8 +21,17 @@ const categories = [
   { id: "film", label: "Film" },
 ];
 
+const clientVideos = [
+  { name: "Wings for Hope", vimeoId: "1160738000", thumbnail: thumbWingsForHope },
+  { name: "Merehbi Clothing Factory", vimeoId: "1160736857", thumbnail: thumbMerehbi },
+  { name: "The Crow Outlet", vimeoId: "1160735239", thumbnail: thumbCrowOutlet },
+  { name: "Trading Road", vimeoId: "1160733719", thumbnail: thumbTradingRoad },
+  { name: "Sakr Furniture", vimeoId: "1160737642", thumbnail: thumbSakrFurniture },
+];
+
 const Work = () => {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [activeClient, setActiveClient] = useState<string | null>(null);
   const filteredProjects = getProjectsByCategory(activeCategory);
 
   // Get projects for sections
@@ -27,6 +43,8 @@ const Work = () => {
   // Separate standard and vertical projects for filter view
   const standardProjects = filteredProjects.filter((p) => !p.isVertical);
   const verticalProjectsFiltered = filteredProjects.filter((p) => p.isVertical);
+
+  const activeClientVideo = clientVideos.find(c => c.name === activeClient);
 
   return (
     <Layout>
@@ -161,15 +179,72 @@ const Work = () => {
               Trusted By
             </p>
             <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 lg:gap-x-14">
-              {clients.map((client, index) => (
-                <span
+              {clientVideos.map((client, index) => (
+                <button
                   key={index}
-                  className="text-xs font-heading font-medium text-muted-foreground/80 uppercase tracking-wider hover:text-foreground transition-colors"
+                  onClick={() => setActiveClient(activeClient === client.name ? null : client.name)}
+                  className={`text-xs font-heading font-medium uppercase tracking-wider transition-colors ${
+                    activeClient === client.name 
+                      ? "text-foreground" 
+                      : "text-muted-foreground/80 hover:text-foreground"
+                  }`}
                 >
-                  {client}
-                </span>
+                  {client.name}
+                </button>
               ))}
             </div>
+
+            {/* Video Panel */}
+            <AnimatePresence>
+              {activeClientVideo && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-10 max-w-4xl mx-auto">
+                    <div className="relative rounded-lg overflow-hidden bg-secondary shadow-xl">
+                      <button
+                        onClick={() => setActiveClient(null)}
+                        className="absolute top-4 right-4 z-10 p-2 bg-background/80 rounded-full hover:bg-background transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                      <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+                        <iframe
+                          src={`https://player.vimeo.com/video/${activeClientVideo.vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479`}
+                          frameBorder="0"
+                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%"
+                          }}
+                          title={activeClientVideo.name}
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-4 flex items-center justify-between">
+                      <p className="text-sm font-medium">{activeClientVideo.name}</p>
+                      <a
+                        href={`https://vimeo.com/${activeClientVideo.vimeoId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        Watch on Vimeo
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>
