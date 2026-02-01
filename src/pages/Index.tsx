@@ -139,54 +139,51 @@ I believe in the power of visual storytelling to create meaningful experiences.<
         <div className="mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center">
             {/* Left Video Panel - 80% */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="lg:w-[68%] rounded-lg overflow-hidden bg-secondary shadow-2xl"
-            >
-              <div style={{ padding: "52.78% 0 0 0", position: "relative" }}>
-                <iframe 
-                  src="https://player.vimeo.com/video/1160737812?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=1&muted=1&loop=1&player_id=0&app_id=58479" 
-                  frameBorder="0" 
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                  referrerPolicy="strict-origin-when-cross-origin" 
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%"
-                  }} 
-                  title="Showreel 2024" 
-                />
+            <motion.div initial={{
+            opacity: 0,
+            scale: 0.98
+          }} whileInView={{
+            opacity: 1,
+            scale: 1
+          }} transition={{
+            duration: 0.5
+          }} viewport={{
+            once: true
+          }} className="lg:w-[68%] rounded-lg overflow-hidden bg-secondary shadow-2xl">
+              <div style={{
+              padding: "52.78% 0 0 0",
+              position: "relative"
+            }}>
+                <iframe src="https://player.vimeo.com/video/1160737812?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=1&muted=1&loop=1&player_id=0&app_id=58479" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%"
+              }} title="Showreel 2024" />
               </div>
             </motion.div>
 
             {/* Right Info Panel - 20% */}
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="lg:w-[32%] flex flex-col justify-center lg:pl-4"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: 20
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} transition={{
+            duration: 0.5,
+            delay: 0.1
+          }} viewport={{
+            once: true
+          }} className="lg:w-[32%] flex flex-col justify-center lg:pl-4">
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-3">
                 Showreel
               </p>
-              <h3 className="font-heading text-xl md:text-2xl font-bold mb-4">
-                2024 Reel
-              </h3>
-              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                A collection of recent work across commercials, documentaries, and branded content.
-              </p>
-              <a 
-                href="https://vimeo.com/1160737812" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors group"
-              >
+              <h3 className="font-heading text-xl md:text-2xl font-bold mb-4">Ali abboud- Album teaser </h3>
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">Role: Editor
+Category: Commercial</p>
+              <a href="https://vimeo.com/1160737812" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors group">
                 Watch on Vimeo
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
