@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import ProjectCard from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { getFeaturedProjects, projects, clients } from "@/data/projects";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const Index = () => {
   const [reelPlaying, setReelPlaying] = useState(false);
@@ -18,8 +19,16 @@ const Index = () => {
       <SEO />
 
       {/* Hero Section */}
-      <section className="min-h-[85vh] flex items-center">
-        <div className="container mx-auto px-6 lg:px-12 py-24">
+      <section className="min-h-[85vh] flex items-center relative overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-background/70" />
+        
+        <div className="container mx-auto px-6 lg:px-12 py-24 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
