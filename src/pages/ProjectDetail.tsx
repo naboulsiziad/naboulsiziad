@@ -81,19 +81,30 @@ const ProjectDetail = () => {
             transition={{ duration: 0.4, delay: 0.05 }}
             className="relative aspect-video bg-secondary rounded-md overflow-hidden mb-12"
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Button asChild variant="outline" size="lg">
-                <a
-                  href={project.videoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  Watch on {project.videoUrl.includes("instagram") ? "Instagram" : project.videoUrl.includes("vimeo") ? "Vimeo" : "YouTube"}
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </Button>
-            </div>
+            {project.vimeoId ? (
+              <iframe
+                src={`https://player.vimeo.com/video/${project.vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0`}
+                className="absolute inset-0 w-full h-full"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title={project.title}
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Button asChild variant="outline" size="lg">
+                  <a
+                    href={project.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    Watch on {project.videoUrl.includes("instagram") ? "Instagram" : project.videoUrl.includes("vimeo") ? "Vimeo" : "YouTube"}
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </Button>
+              </div>
+            )}
           </motion.div>
 
           {/* Description */}
