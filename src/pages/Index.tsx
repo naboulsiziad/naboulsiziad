@@ -135,16 +135,16 @@ I believe in the power of visual storytelling to create meaningful experiences.<
       </section>
 
       {/* Showreel Section */}
-      <section className="py-20 lg:py-28 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+      <section className="py-12 lg:py-16 bg-secondary/30">
+        <div className="mx-auto px-4 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center">
             {/* Left Video Panel - 80% */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="lg:w-[80%] rounded-lg overflow-hidden bg-secondary shadow-2xl"
+              className="lg:w-[85%] rounded-lg overflow-hidden bg-secondary shadow-2xl"
             >
               <div style={{ padding: "52.78% 0 0 0", position: "relative" }}>
                 <iframe 
@@ -170,7 +170,7 @@ I believe in the power of visual storytelling to create meaningful experiences.<
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="lg:w-[20%] flex flex-col justify-center lg:pl-2"
+              className="lg:w-[15%] flex flex-col justify-center lg:pl-2"
             >
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-3">
                 Showreel
