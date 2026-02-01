@@ -4,7 +4,7 @@ import { ArrowRight, X } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import VideoCard from "@/components/VideoCard";
-import { projects, getProjectsByCategory } from "@/data/projects";
+import { projects } from "@/data/projects";
 
 // Import client thumbnails
 import thumbWingsForHope from "@/assets/thumb-wings-for-hope.jpg";
@@ -13,13 +13,6 @@ import thumbCrowOutlet from "@/assets/thumb-crow-outlet.jpg";
 import thumbTradingRoad from "@/assets/thumb-trading-road.jpg";
 import thumbSakrFurniture from "@/assets/thumb-sakr-furniture.jpg";
 
-const categories = [
-  { id: "all", label: "All" },
-  { id: "commercial", label: "Commercial" },
-  { id: "social", label: "Social" },
-  { id: "broadcast", label: "Broadcast" },
-  { id: "film", label: "Film" },
-];
 
 const clientVideos = [
   { name: "Wings for Hope", vimeoId: "1160738000", thumbnail: thumbWingsForHope },
@@ -30,19 +23,11 @@ const clientVideos = [
 ];
 
 const Work = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
   const [activeClient, setActiveClient] = useState<string | null>(null);
-  const filteredProjects = getProjectsByCategory(activeCategory);
 
   // Get projects for sections
   const allProjects = projects;
   const featuredProjects = allProjects.slice(0, 3);
-  const moreProjects = allProjects.filter(p => !p.isVertical).slice(3, 7);
-  const verticalReels = allProjects.filter(p => p.isVertical);
-
-  // Separate standard and vertical projects for filter view
-  const standardProjects = filteredProjects.filter((p) => !p.isVertical);
-  const verticalProjectsFiltered = filteredProjects.filter((p) => p.isVertical);
 
   const activeClientVideo = clientVideos.find(c => c.name === activeClient);
 
@@ -249,164 +234,7 @@ const Work = () => {
         </div>
       </section>
 
-      {/* More Work */}
-      <section className="py-20 lg:py-28">
-        <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
-          <motion.div initial={{
-            opacity: 0,
-            y: 10
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.4
-          }} viewport={{
-            once: true
-          }} className="text-center mb-12 lg:mb-16">
-            <h2 className="font-heading text-2xl md:text-3xl font-bold mb-4">More Work</h2>
-            <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Commercial, broadcast, and film projects.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {moreProjects.map((project, index) => (
-              <VideoCard
-                key={project.id}
-                title={project.title}
-                role={project.role}
-                vimeoId={project.vimeoId}
-                thumbnail={project.thumbnail}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vertical Reels Section */}
-      {verticalReels.length > 0 && (
-        <section className="py-20 lg:py-28 bg-secondary/30">
-          <div className="container mx-auto px-6 lg:px-8 max-w-4xl">
-            <motion.div initial={{
-              opacity: 0,
-              y: 10
-            }} whileInView={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.4
-            }} viewport={{
-              once: true
-            }} className="text-center mb-12 lg:mb-16">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-3">
-                Social
-              </p>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold mb-4">Vertical Reels</h2>
-              <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                Short-form content for Instagram, TikTok, and YouTube Shorts.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-2 gap-6 lg:gap-8 max-w-xl mx-auto">
-              {verticalReels.map((project, index) => (
-                <VideoCard
-                  key={project.id}
-                  title={project.title}
-                  role={project.role}
-                  vimeoId={project.vimeoId}
-                  thumbnail={project.thumbnail}
-                  index={index}
-                  isVertical
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* All Work - Filterable */}
-      <section className="py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mb-16"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold">All Work</h2>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              A collection of projects spanning commercials, social content, broadcast productions,
-              and independent films. Each piece crafted with intention.
-            </p>
-          </motion.div>
-
-          {/* Filter Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.05 }}
-            className="flex flex-wrap gap-3 mb-16"
-          >
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 text-sm font-medium transition-colors border rounded-md ${
-                  activeCategory === category.id
-                    ? "border-foreground text-foreground"
-                    : "border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground"
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </motion.div>
-
-          {/* Standard Projects Grid (16:9) */}
-          {standardProjects.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-              {standardProjects.map((project, index) => (
-                <VideoCard
-                  key={project.id}
-                  title={project.title}
-                  role={project.role}
-                  vimeoId={project.vimeoId}
-                  thumbnail={project.thumbnail}
-                  index={index}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Vertical Projects Grid (9:16) */}
-          {verticalProjectsFiltered.length > 0 && (
-            <div className="mt-16">
-              <h3 className="font-heading text-xl font-semibold mb-8">Social Reels</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-4xl">
-                {verticalProjectsFiltered.map((project, index) => (
-                  <VideoCard
-                    key={project.id}
-                    title={project.title}
-                    role={project.role}
-                    vimeoId={project.vimeoId}
-                    thumbnail={project.thumbnail}
-                    index={index}
-                    isVertical
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {filteredProjects.length === 0 && (
-            <p className="text-center text-muted-foreground py-24">
-              No projects in this category yet.
-            </p>
-          )}
-        </div>
-      </section>
+    
     </Layout>
   );
 };
