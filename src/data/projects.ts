@@ -7,6 +7,9 @@ import thumbFashion from "@/assets/thumb-fashion.jpg";
 import thumbBroadcast from "@/assets/thumb-broadcast.jpg";
 import thumbShortFilm from "@/assets/thumb-short-film.jpg";
 import thumbCulinary from "@/assets/thumb-culinary.jpg";
+import thumbMilqtour from "@/assets/thumb-milqtour.jpg";
+import thumbSynaptikElrass from "@/assets/thumb-synaptik-elrass.jpg";
+import thumbCornflex from "@/assets/thumb-cornflex.jpg";
 
 export interface Project {
   id: string;
@@ -29,7 +32,7 @@ export const projects: Project[] = [
     id: "milqtour-main-promo",
     title: "MILQTOUR- main promo",
     category: "commercial",
-    thumbnail: thumbBrandCampaign,
+    thumbnail: thumbMilqtour,
     videoUrl: "https://vimeo.com/1160745507",
     vimeoId: "1160745507",
     description: "Main promotional video for MILQTOUR. Dynamic visuals with high-energy editing.",
@@ -42,7 +45,7 @@ export const projects: Project[] = [
     id: "synaptik-elrass-album",
     title: "Synaptik- ElRass Album release",
     category: "commercial",
-    thumbnail: thumbTechLaunch,
+    thumbnail: thumbSynaptikElrass,
     videoUrl: "https://vimeo.com/1160750533",
     vimeoId: "1160750533",
     description: "Album release video for Synaptik featuring ElRass. Cinematic storytelling meets music.",
@@ -55,7 +58,7 @@ export const projects: Project[] = [
     id: "cornflex-synaptik-milq",
     title: "Cornflex- Synaptik - milq.records",
     category: "commercial",
-    thumbnail: thumbDocumentary,
+    thumbnail: thumbCornflex,
     videoUrl: "https://vimeo.com/1160749870",
     vimeoId: "1160749870",
     description: "Collaborative project for milq.records featuring Cornflex and Synaptik.",
