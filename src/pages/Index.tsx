@@ -43,13 +43,19 @@ const Index = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground/70 mb-4">
+              Ziad Naboulsi
+            </p>
             <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.92] tracking-tight">
               Video Editor &
               <br />
               <span className="text-muted-foreground">Director</span>
             </h1>
-            <p className="mt-8 text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
-              Based in Beirut. I edit and direct video for brands, broadcasters, and independent filmmakers across the MENA region.
+            <p className="mt-8 text-base md:text-lg text-foreground/80 max-w-xl leading-relaxed">
+              Crafting visual stories for brands, broadcasters, and filmmakers. From concept to final cut—commercials, documentaries, and everything in between.
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground max-w-xl leading-relaxed">
+              Based in Beirut, working across the MENA region with clients in Lebanon, Saudi Arabia, and the UAE.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild size="lg" variant="outline" className="gap-2 h-12 px-6">
@@ -64,9 +70,6 @@ const Index = () => {
                 </a>
               </Button>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground/70">
-              Typical reply within 24 hours
-            </p>
           </motion.div>
         </div>
       </section>
