@@ -45,10 +45,10 @@ const Footer = () => {
             </h4>
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
               <a
-                href="mailto:hello@ziadnaboulsi.com"
+                href="mailto:theziadnaboulsi@gmail.com"
                 className="hover:underline underline-offset-4"
               >
-                hello@ziadnaboulsi.com
+                theziadnaboulsi@gmail.com
               </a>
               <a
                 href="https://wa.me/96170664916"
@@ -70,7 +70,7 @@ const Footer = () => {
           </p>
           <div className="flex gap-8">
             <a
-              href="https://instagram.com/ziadnaboulsi"
+              href="https://www.instagram.com/ziadnaboulsi_/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground hover:underline underline-offset-4"
@@ -78,20 +78,12 @@ const Footer = () => {
               Instagram
             </a>
             <a
-              href="https://vimeo.com/ziadnaboulsi"
+              href="https://vimeo.com/user254016945"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground hover:underline underline-offset-4"
             >
               Vimeo
-            </a>
-            <a
-              href="https://linkedin.com/in/ziadnaboulsi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-muted-foreground hover:underline underline-offset-4"
-            >
-              LinkedIn
             </a>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -15,9 +16,21 @@ import {
 } from "@/components/ui/select";
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [projectType, setProjectType] = useState("");
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value || "";
+    const contact = (form.elements.namedItem("contact") as HTMLInputElement)?.value || "";
+    const deadline = (form.elements.namedItem("deadline") as HTMLInputElement)?.value || "";
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
+
+    const subject = encodeURIComponent(`New Inquiry${projectType ? ` – ${projectType}` : ""}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nContact: ${contact}\nProject Type: ${projectType || "Not specified"}\nDeadline: ${deadline || "Not specified"}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:theziadnaboulsi@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -113,7 +126,7 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <Label htmlFor="project-type" className="text-xs uppercase tracking-wider text-muted-foreground">Project Type</Label>
-                    <Select>
+                    <Select value={projectType} onValueChange={setProjectType}>
                       <SelectTrigger className="bg-secondary border-border rounded-md">
                         <SelectValue placeholder="Select type" />
                       </SelectTrigger>
@@ -168,13 +181,13 @@ const Contact = () => {
                 <h2 className="font-heading text-lg font-semibold mb-8">Contact Details</h2>
                 <div className="space-y-6">
                   <a
-                    href="mailto:ziadnb123@gmail.com"
+                    href="mailto:theziadnaboulsi@gmail.com"
                     className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <Mail className="w-4 h-4" />
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Email</p>
-                      <p className="text-sm text-foreground mt-0.5">ziadnb123@gmail.com</p>
+                      <p className="text-sm text-foreground mt-0.5">theziadnaboulsi@gmail.com</p>
                     </div>
                   </a>
 
@@ -221,7 +234,7 @@ const Contact = () => {
                 <h3 className="font-heading text-base font-semibold mb-4">Follow Along</h3>
                 <div className="flex gap-6 text-sm">
                   <a
-                    href="https://instagram.com/ziadnaboulsi"
+                    href="https://www.instagram.com/ziadnaboulsi_/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:underline underline-offset-4"
@@ -229,20 +242,12 @@ const Contact = () => {
                     Instagram
                   </a>
                   <a
-                    href="https://vimeo.com/ziadnaboulsi"
+                    href="https://vimeo.com/user254016945"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:underline underline-offset-4"
                   >
                     Vimeo
-                  </a>
-                  <a
-                    href="https://linkedin.com/in/ziadnaboulsi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:underline underline-offset-4"
-                  >
-                    LinkedIn
                   </a>
                 </div>
               </div>

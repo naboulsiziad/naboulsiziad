@@ -3,7 +3,7 @@ import { Film, Globe, Camera, Tv, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-import stillHorse from "@/assets/still-horse.webp";
+import aboutPhoto from "@/assets/about-photo.png";
 
 const About = () => {
   const experience = [
@@ -20,7 +20,7 @@ const About = () => {
       description: "Edited commercials, documentaries, and branded content for regional clients.",
     },
     {
-      role: "Junior Editor",
+      role: "Senior Editor",
       company: "Advert Communications",
       period: "2020 – 2021",
       description: "Started my professional journey editing social media content and corporate videos.",
@@ -65,10 +65,10 @@ const About = () => {
           }} transition={{
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1]
-          }} viewport={{
+           }} viewport={{
             once: true
-          }} className="relative aspect-[4/3] rounded-lg overflow-hidden">
-              <img src={stillHorse} alt="On set" className="w-full h-full object-cover" />
+          }} className="relative rounded-lg overflow-hidden">
+              <img src={aboutPhoto} alt="On set" className="w-full h-auto" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/20 to-transparent" />
             </motion.div>
 
@@ -92,7 +92,7 @@ const About = () => {
                 Ziad Naboulsi
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-10 text-[15px]">
-                With over a decade of experience in video production, I bring a cinematic sensibility to every project—whether it's a 30-second commercial, a multi-episode documentary series, or a feature film. My work spans brands, broadcasters, NGOs, and independent filmmakers, always with a focus on visual storytelling that connects and resonates.
+                With over 5 years of experience in video production, I bring a cinematic sensibility to every project—whether it's a 30-second commercial, a multi-episode documentary series, or a feature film. My work spans brands, broadcasters, NGOs, and independent filmmakers, always with a focus on visual storytelling that connects and resonates.
               </p>
 
               {/* Highlights */}
@@ -102,8 +102,8 @@ const About = () => {
                     <Film className="w-5 h-5 text-foreground" />
                   </div>
                   <div>
-                    <p className="font-heading text-sm font-semibold">10+ Years</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">Editing & Directing</p>
+                    <p className="font-heading text-sm font-semibold">5+ Years</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Editing and Directing</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">

@@ -12,15 +12,7 @@ import thumbMerehbi from "@/assets/thumb-merehbi.jpg";
 import thumbCrowOutlet from "@/assets/thumb-crow-outlet.jpg";
 import thumbTradingRoad from "@/assets/thumb-trading-road.jpg";
 import thumbSakrFurniture from "@/assets/thumb-sakr-furniture.jpg";
-
-// Import photography stills
-import stillFruitVendor from "@/assets/still-fruit-vendor.jpg";
-import stillChairsBw from "@/assets/still-chairs-bw.jpg";
-import stillBaalbekTemple from "@/assets/still-baalbek-temple.jpg";
-import stillBaalbekDetail from "@/assets/still-baalbek-detail.jpg";
-import stillBaalbekColumns from "@/assets/still-baalbek-columns.jpg";
-import stillBaalbekRuins from "@/assets/still-baalbek-ruins.jpg";
-import stillBaalbekSky from "@/assets/still-baalbek-sky.jpg";
+import shahidLogo from "@/assets/shahid-logo.png";
 
 
 const clientVideos = [
@@ -31,20 +23,10 @@ const clientVideos = [
   { name: "Sakr Furniture", vimeoId: "1160737642", thumbnail: thumbSakrFurniture },
 ];
 
-const galleryImages = [
-  { src: stillBaalbekTemple, alt: "Temple of Bacchus, Baalbek", orientation: "landscape" as const },
-  { src: stillFruitVendor, alt: "Fruit vendor, street photography", orientation: "portrait" as const },
-  { src: stillBaalbekColumns, alt: "Columns of Jupiter, Baalbek", orientation: "portrait" as const },
-  { src: stillChairsBw, alt: "Two chairs, black and white", orientation: "portrait" as const },
-  { src: stillBaalbekDetail, alt: "Carved stone detail, Baalbek", orientation: "portrait" as const },
-  { src: stillBaalbekRuins, alt: "Temple ruins, Baalbek", orientation: "portrait" as const },
-  { src: stillBaalbekSky, alt: "Columns against sky, Baalbek", orientation: "portrait" as const },
-];
-
 const Work = () => {
   const [activeClient, setActiveClient] = useState<string | null>(null);
   const [aspectRatios, setAspectRatios] = useState<Record<string, number>>({});
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [activeSSCVideo, setActiveSSCVideo] = useState<"diving" | "swimming">("diving");
 
   // Fetch aspect ratios from Vimeo oEmbed
   useEffect(() => {
@@ -91,57 +73,111 @@ const Work = () => {
       {/* Showreel Section */}
       <section className="py-12 lg:py-16 bg-secondary/30">
         <div className="container mx-auto px-6 lg:px-12 max-w-4xl">
-          <div className="flex flex-col gap-6 lg:gap-8">
-            {/* Video Panel */}
-            <motion.div initial={{
-            opacity: 0,
-            scale: 0.98
-          }} whileInView={{
-            opacity: 1,
-            scale: 1
-          }} transition={{
-            duration: 0.5
-          }} viewport={{
-            once: true
-          }} className="w-full rounded-lg overflow-hidden bg-secondary shadow-2xl">
-              <div style={{
-              padding: "52.78% 0 0 0",
-              position: "relative"
-            }}>
-                <iframe src="https://player.vimeo.com/video/1160737812?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=1&muted=1&loop=1&player_id=0&app_id=58479" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%"
-              }} title="Showreel 2024" />
+          <div className="flex flex-col gap-10 lg:gap-14">
+            {/* SSC x Shahid Title */}
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="flex flex-col gap-4 mb-2">
+              <div className="flex items-center gap-4">
+                <h2 className="font-heading text-2xl md:text-3xl font-bold">SSC x Shahid</h2>
+                <img src={shahidLogo} alt="Shahid" className="h-8 md:h-10 object-contain" />
+              </div>
+              <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
+                Following athletes of all levels as they share their passion, challenges, and triumphs, the docuseries explores new horizons across the dynamic landscape of Saudi sports.
+              </p>
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                <span>Sports</span>
+                <span>·</span>
+                <span>Free Show</span>
+              </div>
+              <a href="https://shahid.mbc.net/en/shows/%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9-%D9%88%D8%AD%D9%83%D8%A7%D9%8A%D8%A7%D8%AA/show-49923214668132" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-base font-medium text-foreground hover:text-muted-foreground transition-colors group">
+                Watch on Shahid
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </motion.div>
+
+            {/* Video 1 - Kingdom Of Sport Diving */}
+            <motion.div
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className={`flex flex-col gap-4 cursor-pointer transition-all duration-500 ${activeSSCVideo === "diving" ? "" : "max-w-sm"}`}
+              onClick={() => setActiveSSCVideo("diving")}
+            >
+              <div className={`rounded-lg overflow-hidden bg-secondary ${activeSSCVideo === "diving" ? "shadow-2xl" : "shadow-xl"}`}>
+                <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+                  <iframe src="https://player.vimeo.com/video/1161526504?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=0&player_id=0&app_id=58479" frameBorder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: activeSSCVideo === "diving" ? "auto" : "none" }} title="Kingdom Of Sport - Diving" />
+                  {activeSSCVideo !== "diving" && (
+                    <div className="absolute inset-0 z-10" />
+                  )}
+                </div>
+              </div>
+              <div>
+                <h3 className={`font-heading font-bold leading-tight ${activeSSCVideo === "diving" ? "text-2xl md:text-3xl mb-4" : "text-lg"}`}>
+                  Kingdom Of Sport - Diving | SSC x Shahid
+                </h3>
+                <p className={`text-muted-foreground ${activeSSCVideo === "diving" ? "text-base leading-relaxed" : "mt-1.5 text-xs uppercase tracking-wider"}`}>
+                  {activeSSCVideo === "diving" ? "Role: Video Editor" : "Video Editor"}
+                </p>
               </div>
             </motion.div>
 
-            {/* Info Panel */}
-            <motion.div initial={{
-            opacity: 0,
-            x: 20
-          }} whileInView={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 0.5,
-            delay: 0.1
-          }} viewport={{
-            once: true
-          }} className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-start gap-6 sm:gap-16">
-              <div>
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground mb-3">
-                  Showreel
-                </p>
-                <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4">Ali abboud- Album teaser</h3>
-                <p className="text-base text-muted-foreground leading-relaxed">Role: Editor<br />Category: Commercial</p>
+            {/* Video 1b - Kingdom Of Sport Swimming */}
+            <motion.div
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className={`flex flex-col gap-4 cursor-pointer transition-all duration-500 ${activeSSCVideo === "swimming" ? "" : "max-w-sm"}`}
+              onClick={() => setActiveSSCVideo("swimming")}
+            >
+              <div className={`rounded-lg overflow-hidden bg-secondary ${activeSSCVideo === "swimming" ? "shadow-2xl" : "shadow-xl"}`}>
+                <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+                  <iframe src="https://player.vimeo.com/video/1161527585?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=0&player_id=0&app_id=58479" frameBorder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: activeSSCVideo === "swimming" ? "auto" : "none" }} title="Kingdom Of Sport - Yoga & Crossfit" />
+                  {activeSSCVideo !== "swimming" && (
+                    <div className="absolute inset-0 z-10" />
+                  )}
+                </div>
               </div>
-              <a href="https://vimeo.com/1160737812" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-base font-medium text-foreground hover:text-muted-foreground transition-colors group whitespace-nowrap sm:mt-8">
-                Watch on Vimeo
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+              <div>
+                <h3 className={`font-heading font-bold leading-tight ${activeSSCVideo === "swimming" ? "text-2xl md:text-3xl mb-4" : "text-lg"}`}>
+                  Kingdom Of Sport - Yoga & Crossfit | SSC x Shahid
+                </h3>
+                <p className={`text-muted-foreground ${activeSSCVideo === "swimming" ? "text-base leading-relaxed" : "mt-1.5 text-xs uppercase tracking-wider"}`}>
+                  {activeSSCVideo === "swimming" ? "Role: Video Editor" : "Video Editor"}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Arts and Culture Section */}
+      <section className="py-12 lg:py-16">
+        <div className="container mx-auto px-6 lg:px-12 max-w-4xl">
+          <div className="flex flex-col gap-10 lg:gap-14">
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="mb-2">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold">Arts and Culture</h2>
+            </motion.div>
+
+            {/* Video 2 - Ali Abboud */}
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="flex flex-col gap-4">
+              <div className="rounded-lg overflow-hidden bg-secondary shadow-2xl">
+                <div style={{ padding: "52.78% 0 0 0", position: "relative" }}>
+                  <iframe src="https://player.vimeo.com/video/1160737812?title=0&byline=0&portrait=0&badge=0&autopause=0&autoplay=0&player_id=0&app_id=58479" frameBorder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} title="Ali abboud - Album teaser" />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 sm:gap-16">
+                <div>
+                  <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4">Ali abboud- Album teaser</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed">Role: Editor<br />Category: Commercial</p>
+                </div>
+                <a href="https://vimeo.com/1160737812" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-base font-medium text-foreground hover:text-muted-foreground transition-colors group whitespace-nowrap sm:mt-8">
+                  Watch on Vimeo
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -197,110 +233,6 @@ const Work = () => {
           </div>
         </div>
       </section>
-
-      {/* Photography Section */}
-      <section className="py-20 lg:py-28 border-t border-border/50 bg-secondary/20">
-        <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
-          <div className="mb-12 lg:mb-16">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              viewport={{ once: true }}
-              className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-3"
-            >
-              Photography
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05 }}
-              viewport={{ once: true }}
-              className="font-heading text-3xl md:text-4xl font-bold"
-            >
-              Stills
-            </motion.h2>
-          </div>
-
-          {/* Masonry Grid */}
-          <div className="columns-2 md:columns-3 gap-4 lg:gap-5 space-y-4 lg:space-y-5">
-            {galleryImages.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
-                viewport={{ once: true }}
-                className="break-inside-avoid cursor-pointer group"
-                onClick={() => setLightboxIndex(index)}
-              >
-                <div className="relative rounded-lg overflow-hidden bg-secondary">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
-            onClick={() => setLightboxIndex(null)}
-          >
-            <button
-              onClick={() => setLightboxIndex(null)}
-              className="absolute top-6 right-6 z-10 p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-            >
-              <X className="w-5 h-5 text-white" />
-            </button>
-
-            {/* Previous */}
-            {lightboxIndex > 0 && (
-              <button
-                onClick={(e) => { e.stopPropagation(); setLightboxIndex(lightboxIndex - 1); }}
-                className="absolute left-4 md:left-8 z-10 p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-              >
-                <ArrowRight className="w-5 h-5 text-white rotate-180" />
-              </button>
-            )}
-
-            {/* Next */}
-            {lightboxIndex < galleryImages.length - 1 && (
-              <button
-                onClick={(e) => { e.stopPropagation(); setLightboxIndex(lightboxIndex + 1); }}
-                className="absolute right-4 md:right-8 z-10 p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-              >
-                <ArrowRight className="w-5 h-5 text-white" />
-              </button>
-            )}
-
-            <motion.img
-              key={lightboxIndex}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              src={galleryImages[lightboxIndex].src}
-              alt={galleryImages[lightboxIndex].alt}
-              className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Projects */}
       <section className="py-16 lg:py-20 border-y border-border/50 bg-secondary/20">
